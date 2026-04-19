@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSearch, faUtensils } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faSearch, faUtensils, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './SearchBar';
 import './header.scss';
 import { useAuthContext } from '../Context/Authentification/useAuthContext';
@@ -10,8 +10,17 @@ import { useAuthContext } from '../Context/Authentification/useAuthContext';
 function Header() {
     const [isMenuOpen,   setIsMenuOpen]   = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [isDark, setIsDark]             = useState(() => {
+        const saved = localStorage.getItem('theme');
+        return saved ? saved === 'dark' : true;
+    });
     const isDesktop = useMediaQuery({ query: '(min-width: 768px)' });
     const { userAuth, handleLogout } = useAuthContext();
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }, [isDark]);
 
     const closeMenu    = () => setIsMenuOpen(false);
     const toggleMenu   = () => setIsMenuOpen(prev => !prev);
@@ -35,13 +44,9 @@ function Header() {
             <div className="flex items-center gap-2">
                 {isDesktop ? (
                     <>
-                        <Link to="/catalogue" className="nav-link" onClick={closeMenu}>
-                            Recettes
-                        </Link>
+                        <Link to="/catalogue" className="nav-link" onClick={closeMenu}>Recettes</Link>
                         {userAuth?.role_id === 1 && (
-                            <Link to="/admin" className="nav-link nav-link--admin" onClick={closeMenu}>
-                                Admin
-                            </Link>
+                            <Link to="/admin" className="nav-link nav-link--admin" onClick={closeMenu}>Admin</Link>
                         )}
                     </>
                 ) : (
@@ -49,6 +54,10 @@ function Header() {
                         <FontAwesomeIcon icon={faUtensils} />
                     </Link>
                 )}
+
+                <button className="nav-icon-btn" onClick={() => setIsDark(v => !v)} title={isDark ? 'Mode clair' : 'Mode sombre'}>
+                    <FontAwesomeIcon icon={isDark ? faSun : faMoon} />
+                </button>
 
                 <Link
                     to={userAuth?.username ? '/profil/me' : '/connexion'}
@@ -70,14 +79,8 @@ function Header() {
                 </div>
             </div>
 
-            {/* Barre de recherche */}
-            {isSearchOpen && (
-                <div className="search-bar">
-                    <SearchBar />
-                </div>
-            )}
+            {isSearchOpen && <div className="search-bar"><SearchBar /></div>}
 
-            {/* Menu burger */}
             {isMenuOpen && (
                 <div className="mobile-menu">
                     {userAuth?.username && (

@@ -100,7 +100,9 @@ function RecipePage() {
             {/* ── Header ─────────────────────────────────── */}
             <div className="recipe-header">
                 <h1 className="recipe-title">{dataFetch.name}</h1>
-                <p className="recipe-film-label">Inspirée du film · {dataFetch.Movie.name}</p>
+                <Link to={`/film/${dataFetch.Movie.id}`} className="recipe-film-label" style={{ textDecoration: 'none' }}>
+                    Inspirée du film · {dataFetch.Movie.name}
+                </Link>
 
                 <div className="recipe-meta-row">
                     {likesNumber > 0 && (
@@ -108,7 +110,9 @@ function RecipePage() {
                             ❤ {likesNumber} {likesNumber > 1 ? 'personnes aiment' : 'personne aime'}
                         </span>
                     )}
-                    <span className="recipe-author">Par {dataFetch.User.username}</span>
+                    <Link to={`/profil/${dataFetch.User.id}`} className="recipe-author" style={{ textDecoration: 'none' }}>
+                        Par {dataFetch.User.username}
+                    </Link>
                 </div>
             </div>
 
@@ -188,6 +192,15 @@ function RecipePage() {
                         ▶ Bande annonce
                     </button>
                 )}
+                <button
+                    className="btn-outline"
+                    onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        toast.success('Lien copié !');
+                    }}
+                >
+                    Partager
+                </button>
                 {isAuth && isRecipeOwner && (
                     <button className="btn-danger" onClick={() => setShowDeleteModal(true)}>
                         Supprimer la recette

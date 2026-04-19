@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   getRecipes,
   getRecipe,
+  getRecentRecipes,
   getRecipeDishTypes,
   getRecipeIngredients,
   getRecipesByDishType,
@@ -17,6 +18,7 @@ import isAdmin from "../Middlewares/isAdmin.js";
 const router = Router();
 
 router.get("/recipes", getRecipes.index);
+router.get("/recipes/recent", getRecentRecipes);
 router.get("/recipes/random", getRecipe.getRandomRecipes);
 router.get("/recipes/randomOne", getRecipe.getRandomRecipe);
 router.get("/recipes/:id(\\d+)", getRecipe.index);

@@ -16,6 +16,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from './components/App/Footer/Contact';
 import { LegalNotice } from './components/App/Footer/MentionsLegales';
 import AdminPage from './components/App/Routes/AdminPage/AdminPage';
+import FilmPage from './components/App/Routes/FilmPage/FilmPage';
+import PublicProfilePage from './components/App/Routes/PublicProfilePage/PublicProfilePage';
 
 function App() {
     return (
@@ -26,13 +28,14 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/catalogue" element={<CatalogPage />} />
                 <Route path="/recette/:id" element={<RecipePage />} />
+                <Route path="/film/:id" element={<FilmPage />} />
+                <Route path="/profil/:userId" element={<PublicProfilePage />} />
                 <Route path="/inscription" element={<RegistrationPage />} />
                 <Route path="/connexion" element={<LoginPage />} />
                 <Route path="/profil/me" element={<ProfilePage />} />
                 <Route path="*" element={<PageNotFound />} />
                 <Route path="/contact" element={<ContactForm />} />
                 <Route path="/game" element={<Game />} />
-
                 <Route path="/mentions-legales" element={<LegalNotice />} />
                 <Route path="/admin" element={<AdminPage />} />
             </Routes>

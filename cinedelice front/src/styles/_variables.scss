@@ -1,32 +1,24 @@
 // ─── Cinédelices — Design System ─────────────────────────────────────────────
+// Variables SCSS → CSS custom properties pour le support des thèmes runtime
 
-// Backgrounds
-$bg-primary:   #0d0e14;
-$bg-secondary: #13141c;
-$bg-card:      #1a1b27;
-$bg-hover:     #22233a;
+$bg-primary:       var(--bg-primary);
+$bg-secondary:     var(--bg-secondary);
+$bg-card:          var(--bg-card);
+$bg-hover:         var(--bg-hover);
+$color-gold:       var(--color-gold);
+$color-gold-light: var(--color-gold-light);
+$color-light-red:  var(--color-light-red);
+$color-dark-red:   var(--bg-card);
+$color-skin:       var(--color-skin);
+$color-skin-muted: var(--color-skin-muted);
+$color-light-grey: var(--color-light-grey);
+$color-dark:       var(--bg-primary);
+$border-gold:      var(--border-gold);
+$border-subtle:    var(--border-subtle);
+$shadow-gold:      var(--shadow-gold);
+$shadow-card:      var(--shadow-card);
 
-// Accents
-$color-gold:       #d4a843;
-$color-gold-light: #f0c96a;
-$color-light-red:  #c0392b;
-$color-dark-red:   #1a1b27;   // surface (compat backward)
-
-// Text
-$color-skin:       #e8d5c0;
-$color-skin-muted: #a89080;
-$color-light-grey: #f0e6d6;
-$color-dark:       #0d0e14;
-
-// Borders
-$border-gold:   rgba(212, 168, 67, 0.25);
-$border-subtle: rgba(232, 213, 192, 0.1);
-
-// Shadows
-$shadow-gold: 0 0 30px rgba(212, 168, 67, 0.12);
-$shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
-
-// Breakpoints
+// Breakpoints (statiques, indépendants du thème)
 $breakpoint-s:         480px;
 $breakpoint-m:         768px;
 $breakpoint-l:         1024px;

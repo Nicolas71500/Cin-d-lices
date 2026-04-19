@@ -13,32 +13,31 @@ interface CommentComponentProps {
 function CommentComponent({ recipeId }: CommentComponentProps) {
     const [commentContent, setCommentContent] = useState('');
     const [commentNote, setCommentNote]       = useState(0);
-    const [commentData, setCommentData]       = useState<ICommentCard[] | null>(null);
+    const [commentData, setCommentData]       = useState<ICommentCard[]>([]);
     const [error, setError]                   = useState<string | null>(null);
     const [starsClicked, setStarsClicked]     = useState(false);
     const { userAuth, isAuth } = useAuthContext();
 
-    useEffect(() => {
-        fetchComments(recipeId).then(setCommentData);
-    }, [recipeId]);
+    function refresh() {
+        fetchComments(recipeId).then(data => { if (data) setCommentData(data); }).catch(() => {});
+    }
+
+    useEffect(() => { refresh(); }, [recipeId]);
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         if (!userAuth?.id) return;
-
         if (!commentNote || !commentContent.trim()) {
             setError('Attribuez une note et écrivez votre commentaire.');
             return;
         }
         setError(null);
-
-        postNewComment({ content: commentContent, note: commentNote, user_id: userAuth.id, recipe_id: recipeId })
+        postNewComment({ content: commentContent, note: commentNote, user_id: userAuth.id, recipe_id: recipeId, parent_id: null })
             .then(() => {
                 setCommentContent('');
                 setCommentNote(0);
-                return fetchComments(recipeId);
-            })
-            .then(setCommentData);
+                refresh();
+            });
     }
 
     function handleClickStars() {
@@ -46,8 +45,6 @@ function CommentComponent({ recipeId }: CommentComponentProps) {
         setStarsClicked(true);
         setTimeout(() => setStarsClicked(false), 3000);
     }
-
-    if (!commentData) return null;
 
     return (
         <section className="comments-section">
@@ -58,7 +55,7 @@ function CommentComponent({ recipeId }: CommentComponentProps) {
             )}
 
             {commentData.map(comment => (
-                <CommentCard key={comment.id} comment={comment} />
+                <CommentCard key={comment.id} comment={comment} recipeId={recipeId} onRefresh={refresh} />
             ))}
 
             <p className="comment-form-title">Laisser un commentaire</p>
@@ -75,9 +72,7 @@ function CommentComponent({ recipeId }: CommentComponentProps) {
                         changeRating={isAuth && userAuth ? setCommentNote : undefined}
                     />
                     {!isAuth && starsClicked && (
-                        <span className="error-message-stars">
-                            Connectez-vous pour laisser un avis.
-                        </span>
+                        <span className="error-message-stars">Connectez-vous pour laisser un avis.</span>
                     )}
                 </div>
 
@@ -92,9 +87,7 @@ function CommentComponent({ recipeId }: CommentComponentProps) {
 
                 {isAuth && userAuth && (
                     <div>
-                        <button type="submit" className="btn-filled" style={{ fontSize: '0.82rem' }}>
-                            Publier
-                        </button>
+                        <button type="submit" className="btn-filled" style={{ fontSize: '0.82rem' }}>Publier</button>
                     </div>
                 )}
             </form>

@@ -65,6 +65,10 @@ Users.hasMany (Comment, { as : "userComment", foreignKey: "user_id" });
 Comment.belongsTo (Recipe, {as : "commentRecipe", foreignKey: "recipe_id"});
 Recipe.hasMany (Comment, { as : "comments", foreignKey: "recipe_id" });
 
+// Comment replies (self-reference)
+Comment.hasMany(Comment, { as: 'replies', foreignKey: 'parent_id' });
+Comment.belongsTo(Comment, { as: 'parentComment', foreignKey: 'parent_id' });
+
 // Likes <-> User
 Likes.belongsTo (Users, {as : "likesUsers", foreignKey : "user_id"});
 Users.hasMany (Likes, { as : "userLikes", foreignKey: "user_id" });

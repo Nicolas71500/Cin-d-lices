@@ -135,6 +135,42 @@
     }
 }
 
+.comment-replies {
+    margin-top: 0.75rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid var.$border-gold;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.comment-reply {
+    background: var.$bg-secondary;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+}
+
+.reply-form {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    textarea {
+        background: var.$bg-secondary;
+        border: 1px solid var.$border-subtle;
+        border-radius: 6px;
+        padding: 0.5em 0.75em;
+        color: var.$color-skin;
+        font-family: 'Merriweather Sans', sans-serif;
+        font-size: 0.85rem;
+        resize: none;
+        width: 100%;
+        &::placeholder { color: var.$color-skin-muted; }
+        &:focus { outline: none; border-color: var.$color-gold; }
+    }
+}
+
 .error-message-stars {
     position: absolute;
     top: 110%;

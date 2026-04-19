@@ -190,6 +190,48 @@
     }
 }
 
+// Search bar
+.catalog-search-bar {
+    max-width: 500px;
+    margin: 0 auto 0.5rem;
+    padding: 0 1.5rem;
+
+    input {
+        width: 100%;
+        background: var.$bg-card;
+        border: 1px solid var.$border-subtle;
+        border-radius: 8px;
+        padding: 0.6em 1em;
+        color: var.$color-skin;
+        font-family: 'Merriweather Sans', sans-serif;
+        font-size: 0.88rem;
+        outline: none;
+        transition: border-color 0.2s ease;
+
+        &::placeholder { color: var.$color-skin-muted; }
+        &:focus { border-color: var.$color-gold; }
+    }
+}
+
+// Ratings on cards
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.2rem;
+
+    .card-stars {
+        color: var.$color-gold;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+    }
+
+    .card-rating-count {
+        font-size: 0.65rem;
+        color: var.$color-skin-muted;
+    }
+}
+
 .catalog-empty {
     text-align: center;
     padding: 4rem 1.5rem;

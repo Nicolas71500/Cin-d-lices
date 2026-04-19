@@ -1,5 +1,7 @@
 import Movies from "../Models/Movie.js";
 import Category from "../Models/Category.js";
+import Recipe from "../Models/Recipes.js";
+import Users from "../Models/Users.js";
 
 // Fonction pour obtenir tous les films
 export const getAllMovies = async (req, res) => {
@@ -52,6 +54,25 @@ export const updateMovie = async (req, res) => {
     } else {
       res.status(404).json({ error: "Movie not found" });
     }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getMovieWithRecipes = async (req, res) => {
+  try {
+    const movie = await Movies.findByPk(req.params.id, {
+      include: [
+        { model: Category, as: 'Category' },
+        {
+          model: Recipe,
+          as: 'recipe',
+          include: [{ model: Users, as: 'User', attributes: ['username', 'id'] }],
+        },
+      ],
+    });
+    if (!movie) return res.status(404).json({ error: 'Film introuvable' });
+    res.json(movie);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

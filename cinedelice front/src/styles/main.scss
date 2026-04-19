@@ -11,20 +11,43 @@
 @import '../components/App/Routes/Encrage/encrage.scss';
 @import '../components/App/Routes/404NotFound/PageNotFound.scss';
 @import '../components/App/Routes/CatalogPage/components/modal/index.scss';
+@import '../components/App/Routes/FilmPage/FilmPage.scss';
+@import '../components/App/Routes/PublicProfilePage/PublicProfilePage.scss';
 
-// ─── CSS Custom Properties (for inline styles and JS access) ─────────────────
+// ─── CSS Custom Properties — Dark theme (default) ────────────────────────────
 :root {
-    --color-gold: #{var.$color-gold};
-    --color-skin: #{var.$color-skin};
-    --color-skin-muted: #{var.$color-skin-muted};
-    --color-light-red: #{var.$color-light-red};
-    --bg-primary: #{var.$bg-primary};
-    --bg-secondary: #{var.$bg-secondary};
-    --bg-card: #{var.$bg-card};
-    --border-gold: #{var.$border-gold};
-    --border-subtle: #{var.$border-subtle};
-    --shadow-card: #{var.$shadow-card};
-    --shadow-gold: #{var.$shadow-gold};
+    --color-gold:       #d4a843;
+    --color-gold-light: #f0c96a;
+    --color-skin:       #e8d5c0;
+    --color-skin-muted: #a89080;
+    --color-light-red:  #c0392b;
+    --color-light-grey: #f0e6d6;
+    --bg-primary:       #0d0e14;
+    --bg-secondary:     #13141c;
+    --bg-card:          #1a1b27;
+    --bg-hover:         #22233a;
+    --border-gold:      rgba(212, 168, 67, 0.25);
+    --border-subtle:    rgba(232, 213, 192, 0.1);
+    --shadow-card:      0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-gold:      0 0 30px rgba(212, 168, 67, 0.12);
+}
+
+// ─── Light theme ─────────────────────────────────────────────────────────────
+[data-theme="light"] {
+    --color-gold:       #9a6a0a;
+    --color-gold-light: #b8841c;
+    --color-skin:       #1a0e06;
+    --color-skin-muted: #6b5040;
+    --color-light-red:  #c0392b;
+    --color-light-grey: #2a1a0a;
+    --bg-primary:       #f5f0e8;
+    --bg-secondary:     #ece5d8;
+    --bg-card:          #e3d8c8;
+    --bg-hover:         #d8ccb8;
+    --border-gold:      rgba(154, 106, 10, 0.3);
+    --border-subtle:    rgba(26, 14, 6, 0.12);
+    --shadow-card:      0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-gold:      0 0 30px rgba(154, 106, 10, 0.12);
 }
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
@@ -145,6 +168,17 @@ button, .button-link, a.btn-filled, a.button-link {
         background: var.$color-gold-light;
         border-color: var.$color-gold-light;
         color: var.$bg-primary;
+    }
+}
+
+// Variante contour
+.btn-outline {
+    background: transparent;
+    color: var.$color-gold;
+    border-color: var.$color-gold;
+
+    &:hover {
+        background: rgba(212,168,67,0.1);
     }
 }
 

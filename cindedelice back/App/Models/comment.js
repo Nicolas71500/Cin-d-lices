@@ -21,12 +21,17 @@ Comment.init(
         user_id:{
             type:DataTypes.INTEGER,
             allowNull:false,
+        },
+        parent_id:{
+            type:DataTypes.INTEGER,
+            allowNull:true,
         }
     },
     {
         sequelize,
         modelName:"comment",
-        tableName: "comment"
+        tableName: "comment",
+        underscored: true,
       }
 );
 

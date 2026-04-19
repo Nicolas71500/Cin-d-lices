@@ -26,6 +26,7 @@ export default defineConfig({
             '/comment': 'http://localhost:3000',
             '/likes': 'http://localhost:3000',
             '/admin': 'http://localhost:3000',
+            '/Recipes': 'http://localhost:3000',
         },
     },
 });

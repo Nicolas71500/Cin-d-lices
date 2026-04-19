@@ -148,6 +148,24 @@ export const getUserRecipies = {
   },
 };
 
+export const getPublicProfile = {
+  async index(req, res) {
+    try {
+      const user = await Users.findByPk(req.params.id, {
+        attributes: ['id', 'username'],
+        include: [{
+          model: Recipe,
+          include: [{ model: Movies, as: 'Movie', attributes: ['name', 'picture'] }],
+        }],
+      });
+      if (!user) return res.status(404).json({ message: 'Utilisateur non trouvé' });
+      res.json(user);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+};
+
 export const updatePassword = {
   async index(req, res) {
     try {

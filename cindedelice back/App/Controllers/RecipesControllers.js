@@ -62,7 +62,7 @@ export const getRecipe = {
           {
             model: Movies,
             as: "Movie",
-            attributes: ["name", "picture", "trailer_url"],
+            attributes: ["id", "name", "picture", "trailer_url"],
             include: [
               { model: Category, as: "Category", attributes: ["name"] },
             ],
@@ -157,6 +157,22 @@ export const getRecipe = {
         .json({ message: "Error retrieving the recipe", error: error.message });
     }
   },
+};
+
+export const getRecentRecipes = async (req, res) => {
+  try {
+    const recipes = await Recipe.findAll({
+      limit: 6,
+      order: [['id', 'DESC']],
+      include: [
+        { model: Movies, as: 'Movie', attributes: ['name', 'picture'] },
+        { model: Users, as: 'User', attributes: ['username'] },
+      ],
+    });
+    res.json(recipes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const getRecipeDishTypes = {

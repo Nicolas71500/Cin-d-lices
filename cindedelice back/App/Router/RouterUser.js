@@ -11,6 +11,7 @@ import {
   getUserRecipies,
   updatePassword,
   updateUserRole,
+  getPublicProfile,
 } from "../Controllers/UserControllers.js";
 
 const router = Router();
@@ -23,5 +24,6 @@ router.put("/me", isLoggedIn, updateUser.index);
 router.delete("/users/:id(\\d+)", isAdmin, deleteUser.index);
 router.patch("/users/:id(\\d+)/role", isAdmin, updateUserRole.index);
 router.put("/update-password", isLoggedIn, updatePassword.index);
+router.get("/users/:id(\\d+)/public", getPublicProfile.index);
 
 export default router;
