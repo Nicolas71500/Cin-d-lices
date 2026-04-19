@@ -1,6 +1,6 @@
 # CinéDélices
 
-Application web de recettes de cuisine inspirées de films et séries.
+Application web de recettes de cuisine inspirées de films Séries et Animés.
 
 - **Frontend** : React + TypeScript + Vite + TailwindCSS
 - **Backend** : Node.js + Express + Sequelize
