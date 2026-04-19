@@ -1,0 +1,14 @@
+.game-canvas {
+    border: 2px solid rgb(0, 0, 0);
+    margin: auto;
+    margin-bottom: 100px;
+
+    border-radius: 10px;
+    background-image: url('./bg.jpg');
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir tout le fond */
+    background-position: center; /* Centrer l'image */
+}
+
+.game-over-modal {
+    min-height: 100vh;
+}

@@ -1,0 +1,491 @@
+@use '../../../../styles/variables' as var;
+
+.admin-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+// ─── Page header ──────────────────────────────────────────────────────────────
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var.$border-subtle;
+
+    .admin-title {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-weight: 700;
+        background: linear-gradient(135deg, var.$color-skin 40%, var.$color-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .admin-badge {
+        font-family: 'Cinzel', serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 0.3em 0.9em;
+        border-radius: 20px;
+        border: 1px solid var.$border-gold;
+        color: var.$color-gold;
+        background: rgba(212,168,67,0.08);
+    }
+}
+
+// ─── Stats bar ────────────────────────────────────────────────────────────────
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.admin-stat-card {
+    background: var.$bg-card;
+    border: 1px solid var.$border-subtle;
+    border-radius: 10px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: border-color 0.2s ease;
+
+    &:hover { border-color: var.$border-gold; }
+
+    .stat-number {
+        font-family: 'Cinzel', serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var.$color-gold;
+        line-height: 1;
+        margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+        font-family: 'Cinzel', serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+    }
+}
+
+// ─── Tab nav ──────────────────────────────────────────────────────────────────
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var.$border-subtle;
+    padding-bottom: 0;
+    overflow-x: auto;
+
+    .tab-btn {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-bottom: -1px;
+        white-space: nowrap;
+
+        &:hover { color: var.$color-skin; }
+        &.active {
+            color: var.$color-gold;
+            border-bottom-color: var.$color-gold;
+        }
+    }
+}
+
+// ─── Section title ────────────────────────────────────────────────────────────
+.admin-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var.$color-gold;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var.$color-gold;
+    }
+}
+
+// ─── Table ────────────────────────────────────────────────────────────────────
+.admin-table-wrapper {
+    background: var.$bg-card;
+    border: 1px solid var.$border-subtle;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var.$shadow-card;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        font-family: 'Cinzel', serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var.$color-gold;
+        padding: 0.9rem 1rem;
+        text-align: left;
+        background: rgba(212,168,67,0.04);
+        border-bottom: 1px solid var.$border-gold;
+        white-space: nowrap;
+    }
+
+    td {
+        font-size: 0.85rem;
+        color: var.$color-skin-muted;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var.$border-subtle;
+        vertical-align: middle;
+    }
+
+    .th-actions,
+    td:has(.td-actions) { text-align: right; }
+
+    tbody tr {
+        transition: background 0.15s ease;
+        &:hover { background: rgba(255,255,255,0.02); }
+        &:last-child td { border-bottom: none; }
+    }
+
+    .td-strong {
+        color: var.$color-skin;
+        font-weight: 500;
+    }
+
+    .td-actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+}
+
+// ─── Role select ──────────────────────────────────────────────────────────────
+.role-select {
+    background: var.$bg-secondary;
+    border: 1px solid var.$border-subtle;
+    border-radius: 6px;
+    padding: 0.3em 0.6em;
+    color: var.$color-skin;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+        outline: none;
+        border-color: var.$color-gold;
+    }
+}
+
+// ─── Small action buttons ─────────────────────────────────────────────────────
+.btn-sm {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35em 0.8em;
+    border-radius: 5px;
+    border: 1px solid var.$color-gold;
+    background: transparent;
+    color: var.$color-gold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    &:hover {
+        background: var.$color-gold;
+        color: var.$bg-primary;
+    }
+
+    &.btn-sm-danger {
+        border-color: var.$color-light-red;
+        color: var.$color-light-red;
+        &:hover {
+            background: var.$color-light-red;
+            color: #fff;
+        }
+    }
+}
+
+// ─── Recipe thumb ─────────────────────────────────────────────────────────────
+.recipe-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var.$border-subtle;
+}
+
+// ─── Confirm modal ────────────────────────────────────────────────────────────
+.admin-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+}
+
+.admin-confirm-box {
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 14px;
+    padding: 2rem;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+
+    p {
+        font-size: 0.9rem;
+        color: var.$color-skin-muted;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .admin-confirm-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+}
+
+// ─── Edit modal ──────────────────────────────────────────────────────────────
+.admin-edit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+}
+
+.admin-edit-box {
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 14px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var.$shadow-card, var.$shadow-gold;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212,168,67,0.3) transparent;
+    &::-webkit-scrollbar { width: 5px; }
+    &::-webkit-scrollbar-thumb { background: rgba(212,168,67,0.3); border-radius: 3px; }
+}
+
+.admin-edit-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var.$color-gold;
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.admin-edit-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 1.75rem;
+}
+
+.admin-edit-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    padding-top: 1.25rem;
+    border-top: 1px solid var.$border-subtle;
+}
+
+// ─── Section bar (title + action button) ─────────────────────────────────────
+.admin-section-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .admin-section-title { margin-bottom: 0; }
+}
+
+// ─── Edit subsection (preps / ingredients inside recipe modal) ────────────────
+.admin-edit-subsection {
+    border-top: 1px solid var.$border-subtle;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-edit-subsection-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var.$color-gold;
+    margin-bottom: 0.4rem;
+}
+
+.admin-edit-loading {
+    font-size: 0.78rem;
+    color: var.$color-skin-muted;
+    font-style: italic;
+}
+
+.admin-edit-textarea {
+    background: var.$bg-secondary;
+    border: 1px solid var.$border-subtle;
+    border-radius: 7px;
+    padding: 0.6em 0.9em;
+    color: var.$color-skin;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 0.88rem;
+    width: 100%;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+        outline: none;
+        border-color: var.$color-gold;
+        box-shadow: 0 0 0 3px rgba(212,168,67,0.10);
+    }
+}
+
+// ─── Preparation step row ──────────────────────────────────────────────────────
+.admin-edit-step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.admin-edit-step-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    color: var.$color-gold;
+    min-width: 18px;
+    padding-top: 0.6em;
+}
+
+.admin-edit-step-input {
+    flex: 1;
+}
+
+// ─── Ingredient row ────────────────────────────────────────────────────────────
+.admin-edit-ing-row {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.admin-edit-ing-name {
+    flex: 1 1 55%;
+    background: var.$bg-secondary;
+    border: 1px solid var.$border-subtle;
+    border-radius: 6px;
+    padding: 0.45em 0.75em;
+    color: var.$color-skin;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 0.85rem;
+    transition: border-color 0.2s ease;
+
+    &:focus { outline: none; border-color: var.$color-gold; }
+    &::placeholder { color: var.$color-skin-muted; font-style: italic; }
+}
+
+.admin-edit-ing-qty {
+    flex: 0 1 30%;
+    background: var.$bg-secondary;
+    border: 1px solid var.$border-subtle;
+    border-radius: 6px;
+    padding: 0.45em 0.75em;
+    color: var.$color-skin;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 0.85rem;
+    transition: border-color 0.2s ease;
+
+    &:focus { outline: none; border-color: var.$color-gold; }
+    &::placeholder { color: var.$color-skin-muted; font-style: italic; }
+}
+
+.admin-edit-remove-btn {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var.$color-light-red;
+    background: transparent;
+    color: var.$color-light-red;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: var.$color-light-red;
+        color: #fff;
+    }
+}
+
+// ─── Not admin ────────────────────────────────────────────────────────────────
+.admin-forbidden {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 200px);
+    gap: 1rem;
+    text-align: center;
+
+    p { color: var.$color-skin-muted; font-size: 0.9rem; }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+    .admin-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

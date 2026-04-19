@@ -1,0 +1,41 @@
+@use '../../../../styles/variables' as var;
+
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 128px);
+    gap: 1rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+
+    .not-found-code {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(5rem, 15vw, 10rem);
+        font-weight: 700;
+        line-height: 1;
+        background: linear-gradient(135deg, rgba(212,168,67,0.3) 0%, var.$color-gold 50%, rgba(212,168,67,0.3) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    .not-found-title {
+        font-family: 'Cinzel', serif;
+        font-size: clamp(1.3rem, 4vw, 2rem);
+        color: var.$color-skin;
+        margin: 0;
+        -webkit-text-fill-color: var.$color-skin;
+        background: none;
+    }
+
+    .not-found-message {
+        font-size: 0.92rem;
+        color: var.$color-skin-muted;
+        max-width: 480px;
+        line-height: 1.7;
+        font-style: italic;
+    }
+}

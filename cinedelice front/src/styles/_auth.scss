@@ -1,0 +1,128 @@
+@use './variables' as var;
+
+.auth-page {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212,168,67,0.06) 0%, transparent 60%);
+}
+
+// ─── Global form group (used in auth, profile, admin modals) ──────────────────
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+
+    label {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+    }
+
+    input, textarea, select {
+        background: var.$bg-secondary;
+        border: 1px solid var.$border-subtle;
+        border-radius: 7px;
+        padding: 0.65em 1em;
+        color: var.$color-skin;
+        font-family: 'Merriweather Sans', sans-serif;
+        font-size: 0.92rem;
+        transition: border-color 0.2s ease;
+        width: 100%;
+
+        &::placeholder { color: var.$color-skin-muted; font-style: italic; }
+
+        &:focus {
+            outline: none;
+            border-color: var.$color-gold;
+            box-shadow: 0 0 0 3px rgba(212,168,67,0.12);
+        }
+
+        &.input-error {
+            border-color: rgba(192,57,43,0.6);
+            &:focus { box-shadow: 0 0 0 3px rgba(192,57,43,0.12); }
+        }
+    }
+
+    textarea { resize: vertical; }
+
+    .field-error {
+        font-size: 0.78rem;
+        color: #e07060;
+        font-style: italic;
+    }
+}
+
+.auth-card {
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var.$shadow-card;
+
+    &--wide { max-width: 520px; }
+
+    .auth-logo {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var.$color-skin;
+        margin-bottom: 0.25rem;
+        span { color: var.$color-gold; font-size: 1.6rem; }
+    }
+
+    .auth-eyebrow {
+        text-align: center;
+        font-family: 'Cinzel', serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+        margin-bottom: 2rem;
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .auth-error {
+        background: rgba(192,57,43,0.1);
+        border: 1px solid rgba(192,57,43,0.3);
+        border-radius: 7px;
+        padding: 0.6em 1em;
+        font-size: 0.82rem;
+        color: #e07060;
+        text-align: center;
+    }
+
+    .auth-submit {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .auth-footer {
+        text-align: center;
+        font-size: 0.82rem;
+        color: var.$color-skin-muted;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var.$border-subtle;
+
+        a {
+            color: var.$color-gold;
+            text-decoration: none;
+            font-weight: 600;
+            &:hover { text-decoration: underline; }
+        }
+    }
+}

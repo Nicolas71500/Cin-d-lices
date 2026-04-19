@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: cinedelice_db
+    environment:
+      POSTGRES_USER: cinedelices
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cinedelices}
+      POSTGRES_DB: cinedelices
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./cindedelice back/data/create_tables.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cinedelices"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  backend:
+    build: "./cindedelice back"
+    container_name: cinedelice_backend
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://cinedelices:${DB_PASSWORD:-cinedelices}@db:5432/cinedelices
+      PG_URL: postgres://cinedelices:${DB_PASSWORD:-cinedelices}@db:5432/cinedelices
+      DB_HOST: db
+      DB_USER: cinedelices
+      DB_PASSWORD: ${DB_PASSWORD:-cinedelices}
+      DB_NAME: cinedelices
+      PORT: 3000
+      NODE_ENV: development
+      JWT_SECRET: ${JWT_SECRET:-change_me_in_production}
+      SECRET_KEY: ${SECRET_KEY:-change_me_in_production}
+      ALLOWED_ORIGINS: http://${SERVER_IP:-localhost}
+    volumes:
+      - backend_images:/app/images
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: "./cinedelice front"
+      args:
+        VITE_API_URL: http://${SERVER_IP:-localhost}:3000
+    container_name: cinedelice_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  backend_images:

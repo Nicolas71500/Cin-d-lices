@@ -1,0 +1,35 @@
+// ─── Cinédelices — Design System ─────────────────────────────────────────────
+
+// Backgrounds
+$bg-primary:   #0d0e14;
+$bg-secondary: #13141c;
+$bg-card:      #1a1b27;
+$bg-hover:     #22233a;
+
+// Accents
+$color-gold:       #d4a843;
+$color-gold-light: #f0c96a;
+$color-light-red:  #c0392b;
+$color-dark-red:   #1a1b27;   // surface (compat backward)
+
+// Text
+$color-skin:       #e8d5c0;
+$color-skin-muted: #a89080;
+$color-light-grey: #f0e6d6;
+$color-dark:       #0d0e14;
+
+// Borders
+$border-gold:   rgba(212, 168, 67, 0.25);
+$border-subtle: rgba(232, 213, 192, 0.1);
+
+// Shadows
+$shadow-gold: 0 0 30px rgba(212, 168, 67, 0.12);
+$shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+// Breakpoints
+$breakpoint-s:         480px;
+$breakpoint-m:         768px;
+$breakpoint-l:         1024px;
+$breakpoint-desktop-s: 1224px;
+$breakpoint-desktop-m: 1440px;
+$breakpoint-desktop-l: 1600px;

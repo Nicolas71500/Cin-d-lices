@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "name": "Soufflé au fromage maudit",
+        "difficulty": "Moyen",
+        "picture": "/souffle.png",
+        "total_duration": 60,
+        "anecdote": "Cette recette a été servie lors du dernier banquet royal.",
+        "is_checked": true,
+        "movie": {
+            "id": 3,
+            "name": "Ratatouille",
+            "picture": "/ratatouille.png",
+            "category_id": 1
+        },
+        "user_id": 458
+    },
+    {
+        "id": 2,
+        "name": "Gâteau du destin perdu",
+        "difficulty": "Facile",
+        "picture": "/gateau.png",
+        "total_duration": 30,
+        "anecdote": "C'est le dessert préféré de la Reine d'Angleterre.",
+        "is_checked": false,
+        "movie": {
+            "id": 5,
+            "name": "Le Voyage de Chihiro",
+            "picture": "/chihiro.png",
+            "category_id": 4
+        },
+        "user_id": 457
+    },
+    {
+        "id": 3,
+        "name": "Poisson dans la chaussette du chef",
+        "difficulty": "Difficile",
+        "picture": "/dorade.png",
+        "total_duration": 45,
+        "anecdote": "lorem ipsum dolor magnat alea jacta est",
+        "is_checked": true,
+        "movie": {
+            "id": 8,
+            "name": "Les dents de la mer",
+            "picture": "/jaws.png",
+            "category_id": 2
+        },
+        "user_id": 458
+    },
+    {
+        "id": 4,
+        "name": "Omelette du guerrier céleste",
+        "difficulty": "Facile",
+        "picture": "/omelette.png",
+        "total_duration": 20,
+        "anecdote": "Une recette transmise par les moines Shaolin.",
+        "is_checked": true,
+        "movie": {
+            "id": 6,
+            "name": "Kung Fu Panda",
+            "picture": "/kungfu.png",
+            "category_id": 3
+        },
+        "user_id": 459
+    },
+    {
+        "id": 5,
+        "name": "Tarte aux pommes du vieux farceur",
+        "difficulty": "Moyen",
+        "picture": "/tarte.png",
+        "total_duration": 50,
+        "anecdote": "La légende dit que celui qui la mange entend des voix.",
+        "is_checked": false,
+        "movie": {
+            "id": 2,
+            "name": "Harry Potter",
+            "picture": "/hp.png",
+            "category_id": 5
+        },
+        "user_id": 460
+    },
+    {
+        "id": 6,
+        "name": "Ragoût de dragon aux épices",
+        "difficulty": "Difficile",
+        "picture": "/ragout.png",
+        "total_duration": 90,
+        "anecdote": "Ce plat est si épicé qu'il enflamme la gorge.",
+        "is_checked": true,
+        "movie": {
+            "id": 7,
+            "name": "Le Seigneur des Anneaux",
+            "picture": "/lotr.png",
+            "category_id": 2
+        },
+        "user_id": 461
+    },
+    {
+        "id": 7,
+        "name": "Smoothie extraterrestre vert fluo",
+        "difficulty": "Facile",
+        "picture": "/smoothie.png",
+        "total_duration": 15,
+        "anecdote": "Un smoothie venu d'une autre planète.",
+        "is_checked": false,
+        "movie": {
+            "id": 1,
+            "name": "E.T.",
+            "picture": "/et.png",
+            "category_id": 6
+        },
+        "user_id": 462
+    },
+    {
+        "id": 8,
+        "name": "Salade magique d'elfes",
+        "difficulty": "Moyen",
+        "picture": "/salade.png",
+        "total_duration": 25,
+        "anecdote": "Préparée par les elfes des bois, elle apporte chance.",
+        "is_checked": true,
+        "movie": {
+            "id": 9,
+            "name": "Le Hobbit",
+            "picture": "/hobbit.png",
+            "category_id": 3
+        },
+        "user_id": 463
+    },
+    {
+        "id": 9,
+        "name": "Bœuf bourguignon de l'espace",
+        "difficulty": "Difficile",
+        "picture": "/boeuf.png",
+        "total_duration": 120,
+        "anecdote": "Recette transmise par un astronaute français.",
+        "is_checked": true,
+        "movie": {
+            "id": 10,
+            "name": "Interstellar",
+            "picture": "/interstellar.png",
+            "category_id": 4
+        },
+        "user_id": 464
+    },
+    {
+        "id": 10,
+        "name": "Poisson dans la chaussette du chef",
+        "difficulty": "Difficile",
+        "picture": "/dorade.png",
+        "total_duration": 45,
+        "anecdote": "lorem ipsum dolor magnat alea jacta est",
+        "is_checked": true,
+        "movie": {
+            "id": 8,
+            "name": "Les dents de la mer",
+            "picture": "/jaws.png",
+            "category_id": 2
+        },
+        "user_id": 458
+    }
+]

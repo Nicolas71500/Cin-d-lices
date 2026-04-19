@@ -1,0 +1,234 @@
+@use '../../../styles/variables' as var;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13, 14, 20, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var.$border-gold;
+    padding: 0 1.5rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s ease;
+
+    .logo-link {
+        font-family: 'Cinzel', serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var.$color-skin;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s ease;
+
+        &:visited { color: var.$color-skin; }
+        &:hover   { color: var.$color-gold; }
+    }
+
+    .logo-accent {
+        color: var.$color-gold;
+        font-size: 1.6rem;
+        display: inline;
+    }
+
+    .username-badge {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        color: var.$color-gold;
+        background: rgba(212, 168, 67, 0.1);
+        border: 1px solid var.$border-gold;
+        border-radius: 20px;
+        padding: 0.2em 0.75em;
+        white-space: nowrap;
+        letter-spacing: 0.06em;
+    }
+
+    .nav-link {
+        font-family: 'Cinzel', serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+        text-decoration: none;
+        padding: 0.4em 0.9em;
+        border-radius: 5px;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: var.$color-gold;
+            border-color: var.$border-gold;
+            background: rgba(212, 168, 67, 0.07);
+        }
+        &:visited { color: var.$color-skin-muted; }
+
+        &--admin {
+            color: var.$color-gold;
+            border-color: var.$border-gold;
+            background: rgba(212,168,67,0.06);
+            &:visited { color: var.$color-gold; }
+        }
+    }
+
+    .nav-icon-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var.$border-subtle;
+        color: var.$color-skin-muted;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        font-size: 0.9rem;
+
+        &:hover {
+            color: var.$color-gold;
+            border-color: var.$border-gold;
+            background: rgba(212, 168, 67, 0.08);
+            box-shadow: 0 0 12px rgba(212, 168, 67, 0.2);
+        }
+        &:visited { color: var.$color-skin-muted; }
+    }
+
+    .burger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+
+        .line {
+            width: 22px;
+            height: 2px;
+            background-color: var.$color-skin;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        &:hover .line { background-color: var.$color-gold; }
+    }
+
+    // Search bar overlay
+    .search-bar,
+    .search-bar-mobile {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(13, 14, 20, 0.97);
+        border-bottom: 1px solid var.$border-gold;
+        padding: 0.75rem 1.5rem;
+        z-index: 99;
+        display: flex;
+        justify-content: center;
+
+        input {
+            width: 100%;
+            max-width: 560px;
+            background: var.$bg-card;
+            border: 1px solid var.$border-gold;
+            border-radius: 8px;
+            padding: 0.55em 1em;
+            color: var.$color-skin;
+            font-family: 'Merriweather Sans', sans-serif;
+            font-size: 0.9rem;
+
+            &::placeholder { color: var.$color-skin-muted; font-style: italic; }
+            &:focus {
+                outline: none;
+                border-color: var.$color-gold;
+                box-shadow: 0 0 0 3px rgba(212,168,67,0.15);
+            }
+        }
+
+        .react-autosuggest__container { width: 100%; max-width: 560px; position: relative; }
+
+        .react-autosuggest__suggestions-container--open {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var.$bg-card;
+            border: 1px solid var.$border-gold;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 260px;
+            overflow-y: auto;
+            z-index: 200;
+        }
+
+        .react-autosuggest__suggestion {
+            padding: 0.55em 1em;
+            color: var.$color-skin;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: background 0.15s ease;
+
+            &:hover,
+            &--highlighted { background: rgba(212, 168, 67, 0.1); color: var.$color-gold; }
+        }
+    }
+
+    // Mobile dropdown
+    .mobile-menu {
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(13, 14, 20, 0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var.$border-gold;
+        z-index: 98;
+        padding-bottom: 0.5rem;
+
+        .mobile-user-info {
+            padding: 0.65rem 1.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var.$color-gold;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+            background: rgba(212, 168, 67, 0.04);
+            border-bottom: 1px solid var.$border-subtle;
+        }
+
+        a, button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem 1.5rem;
+            color: var.$color-skin-muted;
+            font-family: 'Cinzel', serif;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            margin: 0;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var.$border-subtle;
+
+            &:hover {
+                color: var.$color-gold;
+                background: rgba(212, 168, 67, 0.06);
+            }
+            &:last-child { border-bottom: none; }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+@use '../../../styles/variables' as var;
+
+.footer {
+    margin-top: auto;
+    background: var.$bg-secondary;
+    border-top: 1px solid var.$border-gold;
+    padding: 2rem 1.5rem;
+    text-align: center;
+
+    .footer-strip {
+        height: 3px;
+        background: repeating-linear-gradient(
+            90deg,
+            var.$color-gold 0, var.$color-gold 20px,
+            transparent 20px, transparent 30px
+        );
+        margin-bottom: 1.5rem;
+        opacity: 0.4;
+    }
+
+    .footer-brand {
+        font-family: 'Cinzel', serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var.$color-skin;
+        margin-bottom: 1rem;
+        letter-spacing: 0.06em;
+
+        span { color: var.$color-gold; }
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.2rem;
+    }
+
+    .footer-link {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+        text-decoration: none;
+        padding: 0.3em 0.7em;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: var.$color-gold;
+            background: rgba(212, 168, 67, 0.08);
+        }
+        &:visited { color: var.$color-skin-muted; }
+    }
+
+    .footer-sep {
+        color: var.$border-gold;
+        font-size: 0.75rem;
+    }
+
+    .footer-copy {
+        font-size: 0.7rem;
+        color: var.$color-skin-muted;
+        opacity: 0.6;
+        letter-spacing: 0.06em;
+    }
+}

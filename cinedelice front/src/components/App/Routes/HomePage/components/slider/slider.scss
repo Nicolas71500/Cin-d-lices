@@ -1,0 +1,125 @@
+@use '../../../../../../styles/variables' as var;
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.25rem;
+}
+
+.main_slider {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var.$border-gold;
+    box-shadow: var.$shadow-card, var.$shadow-gold;
+    cursor: pointer;
+}
+
+.slide-panel {
+    position: relative;
+    width: 50%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+    }
+
+    &:hover img { transform: scale(1.03); }
+
+    .slide-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 0.75rem 0.6rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+        font-family: 'Cinzel', serif;
+        font-size: clamp(0.65rem, 1.2vw, 0.85rem);
+        color: var.$color-skin;
+        text-align: center;
+        letter-spacing: 0.04em;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: all 0.25s ease;
+
+        @media (min-width: var.$breakpoint-m) { opacity: 1; transform: translateY(0); }
+    }
+
+    &:hover .slide-caption { opacity: 1; transform: translateY(0); }
+}
+
+.slide-panel-left  { border-right: 1px solid var.$border-gold; }
+
+// Arrow buttons
+.slide-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid var.$border-gold;
+    color: var.$color-skin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+
+    &:hover {
+        background: rgba(212,168,67,0.25);
+        color: var.$color-gold;
+        box-shadow: 0 0 12px rgba(212,168,67,0.3);
+    }
+
+    &.left  { left: 10px; }
+    &.right { right: 10px; }
+
+    @media (max-width: 600px) { display: none; }
+}
+
+// Dot indicators
+.slider-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+
+    .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var.$border-gold;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        &.active {
+            background: var.$color-gold;
+            width: 18px;
+            border-radius: 3px;
+        }
+    }
+}
+
+// Slide transitions
+.slide-panel {
+    &.exit img  { opacity: 0.3; transform: scale(0.97); }
+    &.enter img { opacity: 0.3; transform: scale(1.03); }
+    &.active img { opacity: 1; transform: scale(1); }
+}

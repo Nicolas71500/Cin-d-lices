@@ -1,0 +1,8 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cercle extérieur -->
+  <circle cx="100" cy="100" r="90" stroke="white" stroke-width="5" fill="none"/>
+  <!-- Lettre “C” -->
+  <text x="55" y="120" font-family="Arial" font-size="100" fill="white">C</text>
+  <!-- Lettre “D” -->
+  <text x="105" y="120" font-family="Arial" font-size="100" fill="white">D</text>
+</svg>

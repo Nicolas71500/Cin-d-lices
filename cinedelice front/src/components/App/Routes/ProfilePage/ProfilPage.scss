@@ -1,0 +1,277 @@
+@use '../../../../styles/variables' as var;
+
+.profile-page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+// ─── Header section ───────────────────────────────────────────────────────────
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var.$border-subtle;
+    text-align: center;
+
+    .profile-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: rgba(212,168,67,0.12);
+        border: 2px solid var.$border-gold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cinzel', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var.$color-gold;
+        margin-bottom: 0.25rem;
+    }
+
+    .profile-username {
+        font-family: 'Cinzel', serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var.$color-skin 40%, var.$color-gold);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .profile-email {
+        font-size: 0.82rem;
+        color: var.$color-skin-muted;
+        font-style: italic;
+    }
+}
+
+// ─── Tab navigation ───────────────────────────────────────────────────────────
+.profile-tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var.$border-subtle;
+    padding-bottom: 0;
+
+    .tab-btn {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-bottom: -1px;
+
+        &:hover { color: var.$color-skin; }
+
+        &.active {
+            color: var.$color-gold;
+            border-bottom-color: var.$color-gold;
+        }
+    }
+}
+
+// ─── Info form ────────────────────────────────────────────────────────────────
+.profile-form-card {
+    background: var.$bg-card;
+    border: 1px solid var.$border-subtle;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 520px;
+    margin: 0 auto;
+    box-shadow: var.$shadow-card;
+
+    .profile-section-title {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var.$color-gold;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-fields {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+// ─── Recipes tab ──────────────────────────────────────────────────────────────
+.recipes-tab {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.recipes-tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .recipes-count {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var.$color-skin-muted;
+    }
+}
+
+.profile-recipe-card {
+    background: var.$bg-card;
+    border: 1px solid var.$border-subtle;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    gap: 0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        border-color: var.$border-gold;
+        box-shadow: var.$shadow-gold;
+    }
+
+    .profile-recipe-images {
+        display: flex;
+        flex-shrink: 0;
+
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+
+            @media (min-width: var.$breakpoint-s) {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    }
+
+    .profile-recipe-info {
+        flex: 1;
+        padding: 1rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 0;
+
+        .profile-recipe-name {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.88rem, 2vw, 1rem);
+            font-weight: 700;
+            color: var.$color-skin;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-recipe-film {
+            font-size: 0.78rem;
+            color: var.$color-gold;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-recipe-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+    }
+}
+
+// ─── Empty state ──────────────────────────────────────────────────────────────
+.profile-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: var.$color-skin-muted;
+    font-size: 0.9rem;
+}
+
+// ─── Password modal ───────────────────────────────────────────────────────────
+.password-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+}
+
+.password-modal-box {
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 14px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: var.$shadow-card;
+
+    .password-modal-title {
+        font-family: 'Cinzel', serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var.$color-gold;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .password-fields {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .password-modal-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+}
+
+// ─── Not authenticated ────────────────────────────────────────────────────────
+.profile-unauthenticated {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    min-height: calc(100vh - 200px);
+    text-align: center;
+    color: var.$color-skin-muted;
+}

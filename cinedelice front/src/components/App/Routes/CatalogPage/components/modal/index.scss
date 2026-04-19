@@ -1,0 +1,172 @@
+@use '../../../../../../styles/variables' as var;
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    backdrop-filter: blur(4px);
+    padding: 1rem;
+}
+
+.modal-body {
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 14px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var.$shadow-card, var.$shadow-gold;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212,168,67,0.3) transparent;
+
+    &::-webkit-scrollbar { width: 6px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(212,168,67,0.3);
+        border-radius: 3px;
+        &:hover { background: var.$color-gold; }
+    }
+
+    h2 {
+        font-family: 'Cinzel', serif;
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var.$color-gold;
+        text-align: center;
+        margin-bottom: 1.75rem;
+        background: none;
+        -webkit-text-fill-color: var.$color-gold;
+    }
+}
+
+.recipe-modal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    @media (min-width: 540px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .col-span-2 { grid-column: 1 / -1; }
+}
+
+.recipe-modal-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var.$color-gold;
+    margin-bottom: 0.4rem;
+}
+
+.recipe-modal-input {
+    display: block;
+    width: 100%;
+    background: var.$bg-secondary;
+    border: 1px solid var.$border-subtle;
+    border-radius: 7px;
+    padding: 0.6em 0.9em;
+    color: var.$color-skin;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 0.88rem;
+    transition: border-color 0.2s ease;
+
+    &::placeholder { color: var.$color-skin-muted; font-style: italic; }
+    &:focus {
+        outline: none;
+        border-color: var.$color-gold;
+        box-shadow: 0 0 0 3px rgba(212,168,67,0.12);
+    }
+
+    &[type='file'] {
+        padding: 0.4em 0.6em;
+        color: var.$color-skin-muted;
+        font-size: 0.82rem;
+        cursor: pointer;
+    }
+}
+
+textarea.recipe-modal-input {
+    resize: vertical;
+    min-height: 70px;
+}
+
+select.recipe-modal-input {
+    cursor: pointer;
+}
+
+.modal-ingredient-row,
+.modal-step-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+
+    .recipe-modal-input { flex: 1; }
+}
+
+.modal-add-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4em 1em;
+    border: 1px dashed var.$border-gold;
+    border-radius: 6px;
+    background: transparent;
+    color: var.$color-skin-muted;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 0.4rem;
+
+    &:hover {
+        border-color: var.$color-gold;
+        color: var.$color-gold;
+    }
+}
+
+.modal-remove-btn {
+    flex-shrink: 0;
+    padding: 0.4em 0.7em;
+    border: 1px solid rgba(192,57,43,0.4);
+    border-radius: 5px;
+    background: transparent;
+    color: var.$color-light-red;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: var.$color-light-red;
+        color: #fff;
+        border-color: var.$color-light-red;
+    }
+}
+
+.modal-file-status {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+
+    &--ok  { color: #6dbf7e; }
+    &--err { color: #e07060; }
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var.$border-subtle;
+}

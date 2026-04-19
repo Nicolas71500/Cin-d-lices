@@ -1,0 +1,55 @@
+@use '../../../../../styles/variables' as var;
+
+.like-button-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6em 1.2em;
+    border: 1px solid var.$border-subtle;
+    border-radius: 6px;
+    background: transparent;
+    color: var.$color-skin-muted;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    svg { font-size: 1rem; }
+
+    &:hover {
+        border-color: rgba(192,57,43,0.5);
+        color: #e07060;
+    }
+
+    &--active {
+        border-color: rgba(192,57,43,0.5);
+        color: #e07060;
+        background: rgba(192,57,43,0.08);
+
+        &:hover { background: rgba(192,57,43,0.15); }
+    }
+}
+
+.like-hint {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 7px;
+    padding: 0.4em 0.85em;
+    font-size: 0.75rem;
+    color: var.$color-skin-muted;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: var.$shadow-card;
+}

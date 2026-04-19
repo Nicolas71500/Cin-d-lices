@@ -1,0 +1,57 @@
+{
+    "id": 1,
+    "name": "Ramen de Naruto",
+    "difficulty": "Facile",
+    "picture": "/ramen.png",
+    "total_duration": 125,
+    "anecdote": "Naruto déteste attendre que les ramens refroidissent. Ils sont un symbole de célébration et de réconfort. Surtout ceux d'Ichiraku.",
+    "is_checked": true,
+    "type": { "id": 2, "name": "Plat" },
+    "Ingredients": [
+        { "id": 8, "name": "Ramen", "quantity": "5kg" },
+        {
+            "id": 65,
+            "name": "Steacks végétariens à base de haricot mungo",
+            "quantity": "5"
+        },
+        { "id": 32, "name": "Tamari", "quantity": "3 bouteilles de 250mL" },
+        { "id": 11, "name": "Carotte", "quantity": "100g" },
+        { "id": 1, "name": "Eau potable sans fluor", "quantity": "10L" }
+    ],
+    "preparation": [
+        {
+            "id": 1,
+            "description": "Faire bouillir l'eau dans une marmitte",
+            "step_position": 1
+        },
+        {
+            "id": 2,
+            "description": "Ajouter les carottes, laisser bouillir 5 minutes, puis ajouter les ramens, laisser bouillir encore 5 minutes.",
+            "step_position": 2
+        },
+        {
+            "id": 3,
+            "description": "Éteindre le feu, vider deux bouteilles de sauce tamari dans la marmitte, et vider la troisième par terre, ça porte bonheur.",
+            "step_position": 3
+        },
+        {
+            "id": 4,
+            "description": "Découpez les steaks de haricot mungo, disposez-les au-dessus.",
+            "step_position": 4
+        },
+        { "id": 5, "description": "C'est prêt!", "step_position": 5 }
+    ],
+    "Movie": {
+        "id": 5,
+        "name": "Naruto",
+        "category": {
+            "id": 3,
+            "name": "Anime"
+        },
+        "picture": "/naruto.png"
+    },
+    "User": {
+        "id": 1,
+        "username": "Quentin_Bogoss_du_34"
+    }
+}
