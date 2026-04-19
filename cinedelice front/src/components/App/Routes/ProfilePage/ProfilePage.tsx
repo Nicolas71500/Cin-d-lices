@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfilPage.scss';
-import { getUserRecipes, updateUser } from './services';
+import { getUserRecipes, getUserLikedRecipes, updateUser } from './services';
 import { IRecipe, IUser } from './models';
 import RecepiesTab from './components/RecepiesTab';
+import LikedRecipesTab from './components/LikedRecipesTab';
 import UserInfoForm from './components/UserInfoForm';
 import { useAuthContext } from '../../Context/Authentification/useAuthContext';
 import { fetchDeleteRecipe } from './services';
@@ -13,8 +14,9 @@ function ProfilePage() {
     const navigate = useNavigate();
     const { userAuth } = useAuthContext();
 
-    const [recipies, setRecipies]   = useState<IRecipe[]>([]);
-    const [activeTab, setActiveTab] = useState<'recipes' | 'info'>('recipes');
+    const [recipies, setRecipies]         = useState<IRecipe[]>([]);
+    const [likedRecipes, setLikedRecipes] = useState<IRecipe[]>([]);
+    const [activeTab, setActiveTab]       = useState<'recipes' | 'liked' | 'info'>('recipes');
     const [editForm, setEditForm]   = useState(false);
 
     const [firstName, setFirstName] = useState('');
@@ -29,6 +31,7 @@ function ProfilePage() {
             setUserName(userAuth.username);
             setEmail(userAuth.email_address);
             getUserRecipes().then(setRecipies).catch(() => {});
+            getUserLikedRecipes(userAuth.id).then(setLikedRecipes).catch(() => {});
         }
     }, [userAuth]);
 
@@ -91,6 +94,12 @@ function ProfilePage() {
                     Mes recettes
                 </button>
                 <button
+                    className={`tab-btn${activeTab === 'liked' ? ' active' : ''}`}
+                    onClick={() => setActiveTab('liked')}
+                >
+                    Mes j'aimes
+                </button>
+                <button
                     className={`tab-btn${activeTab === 'info' ? ' active' : ''}`}
                     onClick={() => setActiveTab('info')}
                 >
@@ -104,6 +113,10 @@ function ProfilePage() {
                     handleDeleteRecipe={handleDeleteRecipe}
                     setRecipies={setRecipies}
                 />
+            )}
+
+            {activeTab === 'liked' && (
+                <LikedRecipesTab likedRecipes={likedRecipes} />
             )}
 
             {activeTab === 'info' && (

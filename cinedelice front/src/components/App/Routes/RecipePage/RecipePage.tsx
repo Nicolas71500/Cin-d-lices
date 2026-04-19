@@ -18,6 +18,14 @@ import CommentComponent from './components/CommentComponent/CommentComponent';
 import { toast } from 'react-toastify';
 import Encrage from '../Encrage/encrage';
 
+function toEmbedUrl(url: string): string {
+    const watchMatch = url.match(/youtube\.com\/watch\?v=([^&]+)/);
+    if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+    const shortMatch = url.match(/youtu\.be\/([^?]+)/);
+    if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+    return url;
+}
+
 function RecipePage() {
     const { id } = useParams();
     const [dataFetch, setDataFetch]           = useState<IRecipe | null>(null);
@@ -28,6 +36,7 @@ function RecipePage() {
     const [userLikedIt, setUserLikedIt]       = useState(false);
     const [likesNumber, setLikesNumber]       = useState(0);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showTrailer, setShowTrailer]         = useState(false);
 
     const { isAuth, userAuth } = useAuthContext();
     const navigate = useNavigate();
@@ -174,6 +183,11 @@ function RecipePage() {
                     handleLikeRecipeButton={handleLike}
                     isAuth={isAuth}
                 />
+                {dataFetch.Movie.trailer_url && (
+                    <button className="btn-trailer" onClick={() => setShowTrailer(true)}>
+                        ▶ Bande annonce
+                    </button>
+                )}
                 {isAuth && isRecipeOwner && (
                     <button className="btn-danger" onClick={() => setShowDeleteModal(true)}>
                         Supprimer la recette
@@ -183,6 +197,24 @@ function RecipePage() {
 
             {/* ── Commentaires ───────────────────────────── */}
             <CommentComponent recipeId={dataFetch.id} />
+
+            {/* ── Trailer modal ──────────────────────────── */}
+            {showTrailer && dataFetch.Movie.trailer_url && (
+                <div className="trailer-overlay" onClick={() => setShowTrailer(false)}>
+                    <div className="trailer-box" onClick={e => e.stopPropagation()}>
+                        <div className="trailer-header">
+                            <span className="trailer-title">{dataFetch.Movie.name}</span>
+                            <button className="trailer-close" onClick={() => setShowTrailer(false)}>✕</button>
+                        </div>
+                        <iframe
+                            className="trailer-iframe"
+                            src={toEmbedUrl(dataFetch.Movie.trailer_url)}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                    </div>
+                </div>
+            )}
 
             {/* ── Delete modal ───────────────────────────── */}
             {showDeleteModal && (

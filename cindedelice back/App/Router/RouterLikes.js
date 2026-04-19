@@ -1,9 +1,12 @@
 import { Router } from "express";
 import isLoggedIn from "../Middlewares/IsLoggedin.js";
-import { deleteLike, getLikesNumber, putLike, userLikedIt } from "../Controllers/LikesControllers.js";
+import { deleteLike, getLikesNumber, getUserLikedRecipes, putLike, userLikedIt } from "../Controllers/LikesControllers.js";
 
 
 const router = Router();
+
+// Get liked recipes for a user — route spécifique AVANT /:recipeId
+router.get('/likes/user/:userId', isLoggedIn, getUserLikedRecipes.index)
 
 //Get number of likes for a recipe
 router.get('/likes/:recipeId', getLikesNumber.index)

@@ -62,7 +62,7 @@ export const getRecipe = {
           {
             model: Movies,
             as: "Movie",
-            attributes: ["name", "picture"],
+            attributes: ["name", "picture", "trailer_url"],
             include: [
               { model: Category, as: "Category", attributes: ["name"] },
             ],

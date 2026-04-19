@@ -19,6 +19,7 @@ export interface IMovie {
     id: number;
     name: string;
     picture: string;
+    trailer_url?: string;
     Category: ICategory;
 }
 

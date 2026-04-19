@@ -5,10 +5,27 @@ export default defineConfig({
     plugins: [react()],
     server: {
         watch: {
-            usePolling: true, // Utilisation du polling pour détecter les changements de fichiers
+            usePolling: true,
         },
         hmr: {
-            overlay: false, // Désactivation de l'overlay HMR en cas de problème avec le hot-reloading
+            overlay: false,
+        },
+        proxy: {
+            '/recipes': 'http://localhost:3000',
+            '/movies': 'http://localhost:3000',
+            '/me': 'http://localhost:3000',
+            '/login': 'http://localhost:3000',
+            '/logout': 'http://localhost:3000',
+            '/register': 'http://localhost:3000',
+            '/users': 'http://localhost:3000',
+            '/user': 'http://localhost:3000',
+            '/update-password': 'http://localhost:3000',
+            '/ingredient': 'http://localhost:3000',
+            '/category': 'http://localhost:3000',
+            '/dishtype': 'http://localhost:3000',
+            '/comment': 'http://localhost:3000',
+            '/likes': 'http://localhost:3000',
+            '/admin': 'http://localhost:3000',
         },
     },
 });

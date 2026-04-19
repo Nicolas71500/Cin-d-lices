@@ -20,6 +20,10 @@ Movies.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    trailer_url: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     category_id: {
       type: DataTypes.INTEGER,
       references: {

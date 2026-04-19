@@ -166,6 +166,7 @@ function AdminPage() {
         setMovieForm({
             name:        movie.name,
             category_id: movie.Category?.id ?? movie.category_id,
+            trailer_url: movie.trailer_url ?? '',
         });
     }
 
@@ -542,6 +543,16 @@ function AdminPage() {
                                         <option key={c.id} value={c.id}>{c.name}</option>
                                     ))}
                                 </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label>URL Bande annonce (YouTube)</label>
+                                <input
+                                    type="text"
+                                    placeholder="https://www.youtube.com/watch?v=..."
+                                    value={movieForm.trailer_url ?? ''}
+                                    onChange={e => setMovieForm(p => ({ ...p, trailer_url: e.target.value }))}
+                                />
                             </div>
                         </div>
 

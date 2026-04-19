@@ -1,4 +1,7 @@
 import Likes from "../Models/Likes.js";
+import Recipe from "../Models/Recipes.js";
+import Movies from "../Models/Movie.js";
+import Users from "../Models/Users.js";
 
 export const getLikesNumber={
 async index(req,res){
@@ -84,6 +87,30 @@ console.log('arrivée dans la fonction delete');
 
     }
 }
+
+export const getUserLikedRecipes = {
+  async index(req, res) {
+    const { userId } = req.params;
+    try {
+      const likes = await Likes.findAll({
+        where: { user_id: Number(userId) },
+        include: [{
+          model: Recipe,
+          as: 'likesRecipe',
+          include: [
+            { model: Movies },
+            { model: Users, attributes: ['username'] },
+          ],
+        }],
+      });
+      const recipes = likes.map(like => like.likesRecipe).filter(Boolean);
+      res.json(recipes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Erreur lors de la récupération des recettes aimées' });
+    }
+  }
+};
 
 export const userLikedIt={
     async index(req,res){

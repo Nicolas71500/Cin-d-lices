@@ -18,7 +18,8 @@ Likes.init(
     {
         sequelize,
         modelName:"likes",
-        tableName: "likes"
+        tableName: "likes",
+        timestamps: false
       }
 );
 

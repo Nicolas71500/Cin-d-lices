@@ -32,6 +32,7 @@ export interface IAdminMovie {
     name: string;
     picture: string;
     category_id: number;
+    trailer_url?: string;
     Category: { id: number; name: string };
 }
 
@@ -127,6 +128,7 @@ export async function deleteMovieAdmin(id: number): Promise<void> {
 export interface IMovieUpdatePayload {
     name: string;
     category_id: number;
+    trailer_url?: string;
 }
 
 export async function updateMovieAdmin(id: number, payload: IMovieUpdatePayload): Promise<IAdminMovie> {

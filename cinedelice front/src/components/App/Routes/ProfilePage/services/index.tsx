@@ -101,6 +101,19 @@ export async function fetchDeleteRecipe(id: number): Promise<any> {
     }
 }
 
+export async function getUserLikedRecipes(userId: number) {
+    try {
+        const response = await axios.get(
+            `${API_URL}/likes/user/${userId}`,
+            { withCredentials: true },
+        );
+        return response.data;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des recettes aimées', error);
+        return [];
+    }
+}
+
 export async function updatePassword(
     oldPassword: string,
     newPassword: string,
