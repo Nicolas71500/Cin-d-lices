@@ -1,14 +1,152 @@
-.game-canvas {
-    border: 2px solid rgb(0, 0, 0);
-    margin: auto;
-    margin-bottom: 100px;
+@use '../../../../styles/variables' as var;
 
-    border-radius: 10px;
-    background-image: url('./bg.jpg');
-    background-size: cover; /* Ajuste la taille de l'image pour couvrir tout le fond */
-    background-position: center; /* Centrer l'image */
+// ─── Wrapper ──────────────────────────────────────────────────────────────────
+.sw-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 5rem;
+    min-height: calc(100vh - 128px);
+    gap: 1.25rem;
 }
 
-.game-over-modal {
-    min-height: 100vh;
+// ─── Header ───────────────────────────────────────────────────────────────────
+.sw-game__header {
+    text-align: center;
+}
+
+.sw-game__title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    background: linear-gradient(135deg, #d4a843 0%, #f0c96a 50%, #d4a843 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 0.4rem;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.sw-game__sub {
+    font-size: 0.92rem;
+    color: var.$color-skin-muted;
+    margin: 0.2rem 0;
+}
+
+.sw-game__keys {
+    font-size: 0.76rem;
+    color: var.$color-skin-muted;
+    font-style: italic;
+    opacity: 0.75;
+    margin: 0.2rem 0 0;
+}
+
+.sw-game__hs {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    color: var.$color-gold;
+    margin: 0.5rem 0 0;
+    letter-spacing: 0.05em;
+}
+
+// ─── Canvas ───────────────────────────────────────────────────────────────────
+.sw-game__canvas {
+    border: 1px solid var.$border-gold;
+    border-radius: 12px;
+    box-shadow:
+        0 0 0 1px rgba(212, 168, 67, 0.08),
+        0 0 50px rgba(212, 168, 67, 0.12),
+        0 8px 40px rgba(0, 0, 0, 0.6);
+    max-width: 100%;
+    display: block;
+    touch-action: none;
+}
+
+// ─── Game Over screen ─────────────────────────────────────────────────────────
+.sw-go {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 3rem 3.5rem;
+    background: var.$bg-card;
+    border: 1px solid var.$border-gold;
+    border-radius: 16px;
+    box-shadow:
+        0 0 60px rgba(212, 168, 67, 0.1),
+        0 8px 48px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    min-width: 320px;
+    animation: go-appear 0.4s ease;
+}
+
+@keyframes go-appear {
+    from { opacity: 0; transform: scale(0.92) translateY(12px); }
+    to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+.sw-go__stars {
+    font-size: 1.6rem;
+    color: var.$color-gold;
+    letter-spacing: 0.6rem;
+    opacity: 0.8;
+}
+
+.sw-go__title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var.$color-skin;
+    -webkit-text-fill-color: var.$color-skin;
+    background: none;
+    margin: 0;
+    line-height: 1;
+}
+
+.sw-go__quote {
+    font-size: 0.9rem;
+    color: var.$color-skin-muted;
+    font-style: italic;
+    margin: 0;
+    max-width: 300px;
+}
+
+.sw-go__scores {
+    display: flex;
+    gap: 3.5rem;
+    margin: 0.5rem 0;
+}
+
+.sw-go__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.sw-go__label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var.$color-skin-muted;
+}
+
+.sw-go__val {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var.$color-skin;
+    line-height: 1;
+
+    &--gold { color: var.$color-gold; }
+}
+
+.sw-go__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.25rem;
 }
